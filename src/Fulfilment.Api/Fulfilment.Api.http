@@ -1,0 +1,6 @@
+@Fulfilment.Api_HostAddress = http://localhost:5255
+
+GET {{Fulfilment.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

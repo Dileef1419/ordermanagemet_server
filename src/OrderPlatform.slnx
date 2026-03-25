@@ -1,0 +1,17 @@
+<Solution>
+  <Project Path="ApiGateway/ApiGateway.csproj" />
+  <Project Path="Catalog.Api/Catalog.Api.csproj" />
+  <Project Path="Fulfilment.Api/Fulfilment.Api.csproj" />
+  <Project Path="Fulfilment.Application/Fulfilment.Application.csproj" />
+  <Project Path="Fulfilment.Domain/Fulfilment.Domain.csproj" />
+  <Project Path="Fulfilment.Infrastructure/Fulfilment.Infrastructure.csproj" />
+  <Project Path="Orders.Api/Orders.Api.csproj" />
+  <Project Path="Orders.Application/Orders.Application.csproj" />
+  <Project Path="Orders.Domain/Orders.Domain.csproj" />
+  <Project Path="Orders.Infrastructure/Orders.Infrastructure.csproj" />
+  <Project Path="Payments.Api/Payments.Api.csproj" />
+  <Project Path="Payments.Application/Payments.Application.csproj" />
+  <Project Path="Payments.Domain/Payments.Domain.csproj" />
+  <Project Path="Payments.Infrastructure/Payments.Infrastructure.csproj" />
+  <Project Path="SharedKernel/SharedKernel.csproj" />
+</Solution>
