@@ -44,6 +44,7 @@ C:\Users\dilshaik\Downloads\Final\OrderPlatformArchitecture\src\Payments.Applica
 C:\Users\dilshaik\Downloads\Final\OrderPlatformArchitecture\src\Payments.Application\obj\Debug\net10.0\Payments.Application.AssemblyInfoInputs.cache
 C:\Users\dilshaik\Downloads\Final\OrderPlatformArchitecture\src\Payments.Application\obj\Debug\net10.0\Payments.Application.AssemblyInfo.cs
 C:\Users\dilshaik\Downloads\Final\OrderPlatformArchitecture\src\Payments.Application\obj\Debug\net10.0\Payments.Application.csproj.CoreCompileInputs.cache
+C:\Users\dilshaik\Downloads\Final\OrderPlatformArchitecture\src\Payments.Application\obj\Debug\net10.0\Payments.Application.sourcelink.json
 C:\Users\dilshaik\Downloads\Final\OrderPlatformArchitecture\src\Payments.Application\obj\Debug\net10.0\Payments.3FD144D3.Up2Date
 C:\Users\dilshaik\Downloads\Final\OrderPlatformArchitecture\src\Payments.Application\obj\Debug\net10.0\Payments.Application.dll
 C:\Users\dilshaik\Downloads\Final\OrderPlatformArchitecture\src\Payments.Application\obj\Debug\net10.0\refint\Payments.Application.dll

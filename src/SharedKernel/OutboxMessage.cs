@@ -2,6 +2,7 @@ namespace SharedKernel;
 
 public class OutboxMessage
 {
+    public Guid Id { get; set; }
     public Guid EventId { get; set; } = Guid.NewGuid();
     public Guid AggregateId { get; set; }
     public string EventType { get; set; } = null!;

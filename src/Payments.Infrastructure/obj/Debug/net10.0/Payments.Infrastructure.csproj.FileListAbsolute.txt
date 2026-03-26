@@ -50,8 +50,11 @@ C:\Users\dilshaik\Downloads\Final\OrderPlatformArchitecture\src\Payments.Infrast
 C:\Users\dilshaik\Downloads\Final\OrderPlatformArchitecture\src\Payments.Infrastructure\obj\Debug\net10.0\Payments.Infrastructure.AssemblyInfoInputs.cache
 C:\Users\dilshaik\Downloads\Final\OrderPlatformArchitecture\src\Payments.Infrastructure\obj\Debug\net10.0\Payments.Infrastructure.AssemblyInfo.cs
 C:\Users\dilshaik\Downloads\Final\OrderPlatformArchitecture\src\Payments.Infrastructure\obj\Debug\net10.0\Payments.Infrastructure.csproj.CoreCompileInputs.cache
+C:\Users\dilshaik\Downloads\Final\OrderPlatformArchitecture\src\Payments.Infrastructure\obj\Debug\net10.0\Payments.Infrastructure.sourcelink.json
 C:\Users\dilshaik\Downloads\Final\OrderPlatformArchitecture\src\Payments.Infrastructure\obj\Debug\net10.0\Payments.7E5EA04E.Up2Date
 C:\Users\dilshaik\Downloads\Final\OrderPlatformArchitecture\src\Payments.Infrastructure\obj\Debug\net10.0\Payments.Infrastructure.dll
 C:\Users\dilshaik\Downloads\Final\OrderPlatformArchitecture\src\Payments.Infrastructure\obj\Debug\net10.0\refint\Payments.Infrastructure.dll
 C:\Users\dilshaik\Downloads\Final\OrderPlatformArchitecture\src\Payments.Infrastructure\obj\Debug\net10.0\Payments.Infrastructure.pdb
 C:\Users\dilshaik\Downloads\Final\OrderPlatformArchitecture\src\Payments.Infrastructure\obj\Debug\net10.0\ref\Payments.Infrastructure.dll
+C:\Users\dilshaik\Downloads\Final\OrderPlatformArchitecture\src\Payments.Infrastructure\bin\Debug\net10.0\Payments.Infrastructure.runtimeconfig.json
+C:\Users\dilshaik\Downloads\Final\OrderPlatformArchitecture\src\Payments.Infrastructure\obj\Debug\net10.0\Payments.Infrastructure.genruntimeconfig.cache

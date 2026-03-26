@@ -1,6 +1,5 @@
-using Microsoft.AspNetCore.RateLimiting;
-using Orders.Application;
-using Orders.Infrastructure;
+using Payments.Application;
+using Payments.Infrastructure;
 using SharedKernel.Filters;
 using SharedKernel.Middleware;
 
@@ -18,29 +17,17 @@ builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc("v1", new()
     {
-        Title = "Orders API",
+        Title = "Payments API",
         Version = "v1",
-        Description = "Order management service — Commands (EF Core) & Queries (Dapper)"
+        Description = "Payment processing service — Authorise, Capture, Refund"
     });
 });
 
 // ── Application Layer (validators) ──
-builder.Services.AddOrdersApplication();
+builder.Services.AddPaymentsApplication();
 
-// ── Infrastructure Layer (EF Core, Dapper, repos, handlers, background services) ──
-builder.Services.AddOrdersInfrastructure(builder.Configuration);
-
-// ── Rate Limiting ──
-builder.Services.AddRateLimiter(options =>
-{
-    options.RejectionStatusCode = StatusCodes.Status429TooManyRequests;
-    options.AddFixedWindowLimiter("default", config =>
-    {
-        config.PermitLimit = 300;
-        config.Window = TimeSpan.FromMinutes(1);
-        config.QueueLimit = 10;
-    });
-});
+// ── Infrastructure Layer (EF Core, Dapper, repos, handlers) ──
+builder.Services.AddPaymentsInfrastructure(builder.Configuration);
 
 builder.Services.AddHealthChecks();
 
@@ -52,18 +39,16 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI(c =>
     {
-        c.SwaggerEndpoint("/swagger/v1/swagger.json", "Orders API v1");
+        c.SwaggerEndpoint("/swagger/v1/swagger.json", "Payments API v1");
         c.RoutePrefix = string.Empty;
     });
 }
 
 // ── Middleware Pipeline ──
 app.UseMiddleware<CorrelationIdMiddleware>();
-app.UseRateLimiter();
 
 // ── Endpoints ──
 app.MapHealthChecks("/health");
 app.MapControllers();
 
 app.Run();
-public record CancelRequest(string Reason);

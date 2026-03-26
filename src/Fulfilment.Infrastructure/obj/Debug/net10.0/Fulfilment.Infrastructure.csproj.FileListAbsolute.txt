@@ -50,6 +50,7 @@ C:\Users\dilshaik\Downloads\Final\OrderPlatformArchitecture\src\Fulfilment.Infra
 C:\Users\dilshaik\Downloads\Final\OrderPlatformArchitecture\src\Fulfilment.Infrastructure\obj\Debug\net10.0\Fulfilment.Infrastructure.AssemblyInfoInputs.cache
 C:\Users\dilshaik\Downloads\Final\OrderPlatformArchitecture\src\Fulfilment.Infrastructure\obj\Debug\net10.0\Fulfilment.Infrastructure.AssemblyInfo.cs
 C:\Users\dilshaik\Downloads\Final\OrderPlatformArchitecture\src\Fulfilment.Infrastructure\obj\Debug\net10.0\Fulfilment.Infrastructure.csproj.CoreCompileInputs.cache
+C:\Users\dilshaik\Downloads\Final\OrderPlatformArchitecture\src\Fulfilment.Infrastructure\obj\Debug\net10.0\Fulfilment.Infrastructure.sourcelink.json
 C:\Users\dilshaik\Downloads\Final\OrderPlatformArchitecture\src\Fulfilment.Infrastructure\obj\Debug\net10.0\Fulfilme.8B5F0F03.Up2Date
 C:\Users\dilshaik\Downloads\Final\OrderPlatformArchitecture\src\Fulfilment.Infrastructure\obj\Debug\net10.0\Fulfilment.Infrastructure.dll
 C:\Users\dilshaik\Downloads\Final\OrderPlatformArchitecture\src\Fulfilment.Infrastructure\obj\Debug\net10.0\refint\Fulfilment.Infrastructure.dll

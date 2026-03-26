@@ -493,6 +493,7 @@ C:\Users\dilshaik\Downloads\Final\OrderPlatformArchitecture\src\Payments.Api\obj
 C:\Users\dilshaik\Downloads\Final\OrderPlatformArchitecture\src\Payments.Api\obj\Debug\net10.0\Payments.Api.csproj.CoreCompileInputs.cache
 C:\Users\dilshaik\Downloads\Final\OrderPlatformArchitecture\src\Payments.Api\obj\Debug\net10.0\Payments.Api.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\dilshaik\Downloads\Final\OrderPlatformArchitecture\src\Payments.Api\obj\Debug\net10.0\Payments.Api.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\dilshaik\Downloads\Final\OrderPlatformArchitecture\src\Payments.Api\obj\Debug\net10.0\Payments.Api.sourcelink.json
 C:\Users\dilshaik\Downloads\Final\OrderPlatformArchitecture\src\Payments.Api\obj\Debug\net10.0\rjimswa.dswa.cache.json
 C:\Users\dilshaik\Downloads\Final\OrderPlatformArchitecture\src\Payments.Api\obj\Debug\net10.0\rjsmrazor.dswa.cache.json
 C:\Users\dilshaik\Downloads\Final\OrderPlatformArchitecture\src\Payments.Api\obj\Debug\net10.0\rjsmcshtml.dswa.cache.json

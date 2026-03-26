@@ -19,11 +19,11 @@ builder.Services.AddSwaggerGen(c =>
     {
         Title = "Fulfilment API",
         Version = "v1",
-        Description = "Shipment & warehouse fulfilment service"
+        Description = "Fulfilment service — Create, Dispatch, Track Shipments"
     });
 });
 
-// ── Application Layer (validators) ──
+// ── Application Layer (validators, commands, queries) ──
 builder.Services.AddFulfilmentApplication();
 
 // ── Infrastructure Layer (EF Core, Dapper, repos, handlers) ──

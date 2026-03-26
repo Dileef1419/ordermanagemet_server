@@ -493,6 +493,7 @@ C:\Users\dilshaik\Downloads\Final\OrderPlatformArchitecture\src\Fulfilment.Api\o
 C:\Users\dilshaik\Downloads\Final\OrderPlatformArchitecture\src\Fulfilment.Api\obj\Debug\net10.0\Fulfilment.Api.csproj.CoreCompileInputs.cache
 C:\Users\dilshaik\Downloads\Final\OrderPlatformArchitecture\src\Fulfilment.Api\obj\Debug\net10.0\Fulfilment.Api.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\dilshaik\Downloads\Final\OrderPlatformArchitecture\src\Fulfilment.Api\obj\Debug\net10.0\Fulfilment.Api.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\dilshaik\Downloads\Final\OrderPlatformArchitecture\src\Fulfilment.Api\obj\Debug\net10.0\Fulfilment.Api.sourcelink.json
 C:\Users\dilshaik\Downloads\Final\OrderPlatformArchitecture\src\Fulfilment.Api\obj\Debug\net10.0\rjimswa.dswa.cache.json
 C:\Users\dilshaik\Downloads\Final\OrderPlatformArchitecture\src\Fulfilment.Api\obj\Debug\net10.0\rjsmrazor.dswa.cache.json
 C:\Users\dilshaik\Downloads\Final\OrderPlatformArchitecture\src\Fulfilment.Api\obj\Debug\net10.0\rjsmcshtml.dswa.cache.json

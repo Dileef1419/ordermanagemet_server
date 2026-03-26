@@ -2,10 +2,11 @@ using Payments.Application;
 using Payments.Infrastructure;
 using SharedKernel.Filters;
 using SharedKernel.Middleware;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// ── MVC Controllers + Filters ──
+// ── Controllers + Global Filters ──
 builder.Services.AddControllers(options =>
 {
     options.Filters.Add<GlobalExceptionFilter>();
@@ -23,17 +24,18 @@ builder.Services.AddSwaggerGen(c =>
     });
 });
 
-// ── Application Layer (validators) ──
+// ── Application Layer ──
 builder.Services.AddPaymentsApplication();
 
-// ── Infrastructure Layer (EF Core, Dapper, repos, handlers) ──
+// ── Infrastructure Layer ──
 builder.Services.AddPaymentsInfrastructure(builder.Configuration);
 
+// ── Health Checks ──
 builder.Services.AddHealthChecks();
 
 var app = builder.Build();
 
-// ── Swagger (Development only) ──
+// ── Swagger UI (Development Only) ──
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();

@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Fulfilment.Api")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+cd1b5ce6b7b545c10540322755c0be72d1e76807")]
 [assembly: System.Reflection.AssemblyProductAttribute("Fulfilment.Api")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Fulfilment.Api")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

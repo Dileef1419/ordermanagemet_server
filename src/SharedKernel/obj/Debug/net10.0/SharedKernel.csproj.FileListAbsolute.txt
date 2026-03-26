@@ -30,6 +30,7 @@ C:\Users\dilshaik\Downloads\Final\OrderPlatformArchitecture\src\SharedKernel\obj
 C:\Users\dilshaik\Downloads\Final\OrderPlatformArchitecture\src\SharedKernel\obj\Debug\net10.0\SharedKernel.AssemblyInfoInputs.cache
 C:\Users\dilshaik\Downloads\Final\OrderPlatformArchitecture\src\SharedKernel\obj\Debug\net10.0\SharedKernel.AssemblyInfo.cs
 C:\Users\dilshaik\Downloads\Final\OrderPlatformArchitecture\src\SharedKernel\obj\Debug\net10.0\SharedKernel.csproj.CoreCompileInputs.cache
+C:\Users\dilshaik\Downloads\Final\OrderPlatformArchitecture\src\SharedKernel\obj\Debug\net10.0\SharedKernel.sourcelink.json
 C:\Users\dilshaik\Downloads\Final\OrderPlatformArchitecture\src\SharedKernel\obj\Debug\net10.0\SharedKernel.dll
 C:\Users\dilshaik\Downloads\Final\OrderPlatformArchitecture\src\SharedKernel\obj\Debug\net10.0\refint\SharedKernel.dll
 C:\Users\dilshaik\Downloads\Final\OrderPlatformArchitecture\src\SharedKernel\obj\Debug\net10.0\SharedKernel.pdb

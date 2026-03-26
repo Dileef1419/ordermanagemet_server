@@ -50,6 +50,7 @@ C:\Users\dilshaik\Downloads\Final\OrderPlatformArchitecture\src\Orders.Infrastru
 C:\Users\dilshaik\Downloads\Final\OrderPlatformArchitecture\src\Orders.Infrastructure\obj\Debug\net10.0\Orders.Infrastructure.AssemblyInfoInputs.cache
 C:\Users\dilshaik\Downloads\Final\OrderPlatformArchitecture\src\Orders.Infrastructure\obj\Debug\net10.0\Orders.Infrastructure.AssemblyInfo.cs
 C:\Users\dilshaik\Downloads\Final\OrderPlatformArchitecture\src\Orders.Infrastructure\obj\Debug\net10.0\Orders.Infrastructure.csproj.CoreCompileInputs.cache
+C:\Users\dilshaik\Downloads\Final\OrderPlatformArchitecture\src\Orders.Infrastructure\obj\Debug\net10.0\Orders.Infrastructure.sourcelink.json
 C:\Users\dilshaik\Downloads\Final\OrderPlatformArchitecture\src\Orders.Infrastructure\obj\Debug\net10.0\Orders.I.8E58370D.Up2Date
 C:\Users\dilshaik\Downloads\Final\OrderPlatformArchitecture\src\Orders.Infrastructure\obj\Debug\net10.0\Orders.Infrastructure.dll
 C:\Users\dilshaik\Downloads\Final\OrderPlatformArchitecture\src\Orders.Infrastructure\obj\Debug\net10.0\refint\Orders.Infrastructure.dll

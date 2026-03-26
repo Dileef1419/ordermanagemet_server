@@ -6,15 +6,26 @@ namespace Payments.Infrastructure.Persistence;
 
 public class PaymentsDbContext : DbContext
 {
-    public DbSet<Payment> Payments => Set<Payment>();
-    public DbSet<OutboxMessage> Outbox => Set<OutboxMessage>();
-    public DbSet<ProcessedCommand> ProcessedCommands => Set<ProcessedCommand>();
+  public DbSet<Payment> Payments => Set<Payment>();
+  public DbSet<OutboxMessage> Outbox => Set<OutboxMessage>();
+  public DbSet<ProcessedCommand> ProcessedCommands => Set<ProcessedCommand>();
 
-    public PaymentsDbContext(DbContextOptions<PaymentsDbContext> options) : base(options) { }
+  public PaymentsDbContext(DbContextOptions<PaymentsDbContext> options)
+    : base(options)
+  {
+  }
 
-    protected override void OnModelCreating(ModelBuilder modelBuilder)
-    {
-        modelBuilder.HasDefaultSchema("pay");
-        modelBuilder.ApplyConfigurationsFromAssembly(typeof(PaymentsDbContext).Assembly);
-    }
+  protected override void OnModelCreating(ModelBuilder modelBuilder)
+  {
+    // Set default schema
+    modelBuilder.HasDefaultSchema("pay");
+
+    // Apply all entity configurations from this assembly
+    modelBuilder.ApplyConfigurationsFromAssembly(typeof(PaymentsDbContext).Assembly);
+
+    // Configure RowVersion for concurrency
+    modelBuilder.Entity<Payment>()
+      .Property(p => p.RowVersion)
+      .IsRowVersion();
+  }
 }
