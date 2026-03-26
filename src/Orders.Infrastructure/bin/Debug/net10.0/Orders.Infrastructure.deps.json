@@ -14,6 +14,7 @@
           "Microsoft.Extensions.Hosting.Abstractions": "10.0.5",
           "Orders.Application": "1.0.0",
           "Orders.Domain": "1.0.0",
+          "Payments.Infrastructure": "1.0.0",
           "SharedKernel": "1.0.0"
         },
         "runtime": {
@@ -787,6 +788,46 @@
           }
         }
       },
+      "Payments.Application/1.0.0": {
+        "dependencies": {
+          "FluentValidation.DependencyInjectionExtensions": "12.1.1",
+          "Payments.Domain": "1.0.0",
+          "SharedKernel": "1.0.0"
+        },
+        "runtime": {
+          "Payments.Application.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "Payments.Domain/1.0.0": {
+        "dependencies": {
+          "SharedKernel": "1.0.0"
+        },
+        "runtime": {
+          "Payments.Domain.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "Payments.Infrastructure/1.0.0": {
+        "dependencies": {
+          "Dapper": "2.1.72",
+          "Microsoft.Data.SqlClient": "7.0.0",
+          "Microsoft.EntityFrameworkCore.SqlServer": "10.0.5",
+          "Payments.Application": "1.0.0",
+          "Payments.Domain": "1.0.0",
+          "SharedKernel": "1.0.0"
+        },
+        "runtime": {
+          "Payments.Infrastructure.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
       "SharedKernel/1.0.0": {
         "dependencies": {
           "Dapper": "2.1.72",
@@ -1223,6 +1264,21 @@
       "sha512": ""
     },
     "Orders.Domain/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Payments.Application/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Payments.Domain/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Payments.Infrastructure/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

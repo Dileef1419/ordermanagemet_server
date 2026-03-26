@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "KCRX6Xnx2F4=",
+  "dgSpecHash": "ICsK+zgZEXw=",
   "success": true,
-  "projectFilePath": "C:\\Users\\dilshaik\\Downloads\\Final\\OrderPlatformArchitecture\\src\\Orders.Api\\Orders.Api.csproj",
+  "projectFilePath": "C:\\Users\\dilshaik\\Downloads\\Final\\OrderPlatformArchitecture\\src\\Orders.APi\\Orders.Api.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\dilshaik\\.nuget\\packages\\dapper\\2.1.72\\dapper.2.1.72.nupkg.sha512",
     "C:\\Users\\dilshaik\\.nuget\\packages\\fluentvalidation\\12.1.1\\fluentvalidation.12.1.1.nupkg.sha512",

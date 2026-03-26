@@ -1,19 +1,20 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Payments.Infrastructure.Persistence;
+using Orders.Infrastructure.Persistence;
 
-namespace Payments.Infrastructure;
-
-public static class DependencyInjection
+namespace Orders.Infrastructure
 {
-    public static IServiceCollection AddPaymentsInfrastructure(
-        this IServiceCollection services,
-        IConfiguration config)
+    public static class OrdersInfrastructureDependencyInjection
     {
-        services.AddDbContext<PaymentsDbContext>(options =>
-            options.UseSqlServer(config.GetConnectionString("PaymentsDb")));
-
-        return services;
+        public static IServiceCollection AddOrdersInfrastructure(
+            this IServiceCollection services,
+            IConfiguration config)
+        {
+            // Add your Orders DB context here
+            // Example: services.AddDbContext<OrdersDbContext>(...)
+            // Replace with actual OrdersDbContext connection if needed
+            return services;
+        }
     }
 }
