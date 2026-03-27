@@ -1,7 +1,7 @@
 namespace Orders.Application.Queries.GetOrdersByCustomer;
 
 public record GetOrdersByCustomerQuery(
-    Guid CustomerId,
+    Guid? CustomerId,
     string? Status,
     int Page,
     int PageSize);

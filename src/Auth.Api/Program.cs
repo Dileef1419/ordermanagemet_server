@@ -99,4 +99,22 @@ app.UseAuthorization();
 app.MapHealthChecks("/health");
 app.MapControllers();
 
+// ── Database Startup ──
+using (var scope = app.Services.CreateScope())
+{
+    var context = scope.ServiceProvider.GetRequiredService<Auth.Infrastructure.Persistence.AuthDbContext>();
+    context.Database.EnsureCreated();
+    if (!context.Users.Any(u => u.Email == "admin@example.com"))
+    {
+        context.Users.Add(new Auth.Domain.Entities.User
+        {
+            Name = "System Admin",
+            Email = "admin@example.com",
+            PasswordHash = BCrypt.Net.BCrypt.HashPassword("adminpassword123"),
+            Role = "Admin"
+        });
+        context.SaveChanges();
+    }
+}
+
 app.Run();

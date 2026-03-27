@@ -1342,42 +1342,35 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\dilshaik\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\dilee\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\dilshaik\\Downloads\\Final\\OrderPlatformArchitecture\\src\\Fulfilment.Application\\Fulfilment.Application.csproj",
+      "projectUniqueName": "C:\\Users\\dilee\\OneDrive\\Desktop\\OMS\\ordermanagemet_server\\src\\Fulfilment.Application\\Fulfilment.Application.csproj",
       "projectName": "Fulfilment.Application",
-      "projectPath": "C:\\Users\\dilshaik\\Downloads\\Final\\OrderPlatformArchitecture\\src\\Fulfilment.Application\\Fulfilment.Application.csproj",
-      "packagesPath": "C:\\Users\\dilshaik\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\dilshaik\\Downloads\\Final\\OrderPlatformArchitecture\\src\\Fulfilment.Application\\obj\\",
+      "projectPath": "C:\\Users\\dilee\\OneDrive\\Desktop\\OMS\\ordermanagemet_server\\src\\Fulfilment.Application\\Fulfilment.Application.csproj",
+      "packagesPath": "C:\\Users\\dilee\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\dilee\\OneDrive\\Desktop\\OMS\\ordermanagemet_server\\src\\Fulfilment.Application\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\dilshaik\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Users\\dilee\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net10.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net10.0": {
           "targetAlias": "net10.0",
           "projectReferences": {
-            "C:\\Users\\dilshaik\\Downloads\\Final\\OrderPlatformArchitecture\\src\\Fulfilment.Domain\\Fulfilment.Domain.csproj": {
-              "projectPath": "C:\\Users\\dilshaik\\Downloads\\Final\\OrderPlatformArchitecture\\src\\Fulfilment.Domain\\Fulfilment.Domain.csproj"
+            "C:\\Users\\dilee\\OneDrive\\Desktop\\OMS\\ordermanagemet_server\\src\\Fulfilment.Domain\\Fulfilment.Domain.csproj": {
+              "projectPath": "C:\\Users\\dilee\\OneDrive\\Desktop\\OMS\\ordermanagemet_server\\src\\Fulfilment.Domain\\Fulfilment.Domain.csproj"
             },
-            "C:\\Users\\dilshaik\\Downloads\\Final\\OrderPlatformArchitecture\\src\\SharedKernel\\SharedKernel.csproj": {
-              "projectPath": "C:\\Users\\dilshaik\\Downloads\\Final\\OrderPlatformArchitecture\\src\\SharedKernel\\SharedKernel.csproj"
+            "C:\\Users\\dilee\\OneDrive\\Desktop\\OMS\\ordermanagemet_server\\src\\SharedKernel\\SharedKernel.csproj": {
+              "projectPath": "C:\\Users\\dilee\\OneDrive\\Desktop\\OMS\\ordermanagemet_server\\src\\SharedKernel\\SharedKernel.csproj"
             }
           }
         }

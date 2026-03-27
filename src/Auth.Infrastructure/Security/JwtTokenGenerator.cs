@@ -13,7 +13,7 @@ public class JwtTokenGenerator : IJwtTokenGenerator
 
     public JwtTokenGenerator(IConfiguration configuration) => _configuration = configuration;
 
-    public string GenerateToken(Guid userId, string email, string role, DateTime nowUtc, out DateTime expiresUtc)
+    public string GenerateToken(Guid userId, string name, string email, string role, DateTime nowUtc, out DateTime expiresUtc)
     {
         var key = _configuration["Jwt:Key"] ?? throw new InvalidOperationException("Jwt:Key not configured.");
         var issuer = _configuration["Jwt:Issuer"];
@@ -25,6 +25,7 @@ public class JwtTokenGenerator : IJwtTokenGenerator
         var claims = new[]
         {
             new Claim(JwtRegisteredClaimNames.Sub, userId.ToString()),
+            new Claim(JwtRegisteredClaimNames.Name, name),
             new Claim(JwtRegisteredClaimNames.Email, email),
             new Claim(ClaimTypes.Role, role),
             new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),

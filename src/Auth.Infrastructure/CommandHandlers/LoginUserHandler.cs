@@ -25,7 +25,7 @@ public class LoginUserHandler : ILoginUserCommandHandler
         var valid = BCrypt.Net.BCrypt.Verify(command.Password, user.PasswordHash);
         if (!valid) throw new UnauthorizedAccessException("Invalid credentials.");
 
-        var token = _jwt.GenerateToken(user.Id, user.Email, user.Role, DateTime.UtcNow, out var expiresAt);
+        var token = _jwt.GenerateToken(user.Id, user.Name, user.Email, user.Role, DateTime.UtcNow, out var expiresAt);
         return new LoginResponse(token, expiresAt);
     }
 }

@@ -44,6 +44,22 @@ app.UseMiddleware<CorrelationIdMiddleware>();
 
 // ── Endpoints ──
 app.MapHealthChecks("/health");
+// ── Database Startup ──
+using (var scope = app.Services.CreateScope())
+{
+    var context = scope.ServiceProvider.GetRequiredService<Catalog.Infrastructure.Persistence.CatalogDbContext>();
+    context.Database.EnsureCreated();
+    if (!context.Products.Any())
+    {
+        context.Products.AddRange(new List<Catalog.Infrastructure.Persistence.Product>
+        {
+            new Catalog.Infrastructure.Persistence.Product { Name = "Gaming Mouse", Sku = "GMS-001", CategoryId = "Electronics", Price = 2500, Available = 10 },
+            new Catalog.Infrastructure.Persistence.Product { Name = "Mechanical Keyboard", Sku = "KBD-002", CategoryId = "Electronics", Price = 4500, Available = 5 },
+            new Catalog.Infrastructure.Persistence.Product { Name = "Ergonomic Chair", Sku = "CHR-003", CategoryId = "Furniture", Price = 12000, Available = 0 }
+        });
+        context.SaveChanges();
+    }
+}
 app.MapControllers();
 
 app.Run();

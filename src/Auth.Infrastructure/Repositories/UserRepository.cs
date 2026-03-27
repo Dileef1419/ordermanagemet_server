@@ -22,4 +22,20 @@ public class UserRepository : IUserRepository
 
     public Task<User?> GetByEmailAsync(string email, CancellationToken ct) =>
         _db.Users.AsNoTracking().FirstOrDefaultAsync(u => u.Email == email, ct);
+
+    public async Task<IEnumerable<User>> GetAllAsync(CancellationToken ct) =>
+        await _db.Users.AsNoTracking().ToListAsync(ct);
+
+    public async Task<bool> DeleteAsync(string email, CancellationToken ct)
+    {
+        var user = await _db.Users.FirstOrDefaultAsync(u => u.Email == email, ct);
+        if (user == null) return false;
+
+        _db.Users.Remove(user);
+        await _db.SaveChangesAsync(ct);
+        return true;
+    }
+
+    public Task<User?> GetByIdAsync(Guid id, CancellationToken ct) =>
+        _db.Users.AsNoTracking().FirstOrDefaultAsync(u => u.Id == id, ct);
 }

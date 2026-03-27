@@ -26,7 +26,7 @@ public class GetOrdersByCustomerQueryHandler : IGetOrdersByCustomerQueryHandler
                 o.PlacedAt,
                 o.LastUpdatedAt
             FROM ord.Orders o
-            WHERE o.CustomerId = @CustomerId
+            WHERE (@CustomerId IS NULL OR o.CustomerId = @CustomerId)
               AND (@Status IS NULL OR o.Status = @Status)
             ORDER BY o.PlacedAt DESC
             OFFSET @Offset ROWS FETCH NEXT @PageSize ROWS ONLY;";

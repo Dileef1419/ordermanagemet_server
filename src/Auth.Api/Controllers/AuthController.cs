@@ -76,4 +76,44 @@ public class AuthController : ControllerBase
             return Unauthorized();
         }
     }
+
+    /// <summary>Get all registered users (Admin only).</summary>
+    [HttpGet("users")]
+    [ProducesResponseType(typeof(IEnumerable<UserResponse>), StatusCodes.Status200OK)]
+    public async Task<IActionResult> GetUsers(
+        [FromServices] Auth.Domain.Repositories.IUserRepository repository,
+        CancellationToken ct)
+    {
+        var users = await repository.GetAllAsync(ct);
+        var response = users.Select(u => new UserResponse(u.Id, u.Name, u.Email, u.Role, u.CreatedAt));
+        return Ok(response);
+    }
+
+    /// <summary>Get user profile by ID.</summary>
+    [HttpGet("{id:guid}")]
+    [ProducesResponseType(typeof(UserResponse), StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    public async Task<IActionResult> GetProfile(
+        Guid id,
+        [FromServices] Auth.Domain.Repositories.IUserRepository repository,
+        CancellationToken ct)
+    {
+        var user = await repository.GetByIdAsync(id, ct);
+        if (user == null) return NotFound();
+
+        return Ok(new UserResponse(user.Id, user.Name, user.Email, user.Role, user.CreatedAt));
+    }
+
+    /// <summary>Delete a user by email (Admin only).</summary>
+    [HttpDelete("users/{email}")]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    public async Task<IActionResult> DeleteUser(
+        string email,
+        [FromServices] Auth.Domain.Repositories.IUserRepository repository,
+        CancellationToken ct)
+    {
+        var success = await repository.DeleteAsync(email, ct);
+        return success ? NoContent() : NotFound();
+    }
 }

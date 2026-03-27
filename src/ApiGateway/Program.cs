@@ -1,5 +1,7 @@
 using Microsoft.AspNetCore.RateLimiting;
 using SharedKernel.Middleware;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -35,6 +37,16 @@ builder.Services.AddRateLimiter(options =>
 builder.Services.AddHealthChecks();
 builder.Services.AddHttpClient();
 
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(policy =>
+    {
+        policy.WithOrigins("http://localhost:4200")
+              .AllowAnyHeader()
+              .AllowAnyMethod();
+    });
+});
+
 var app = builder.Build();
 
 // ----- Swagger (Development only) -----
@@ -50,6 +62,7 @@ if (app.Environment.IsDevelopment())
 
 // ----- Middleware Pipeline -----
 app.UseMiddleware<CorrelationIdMiddleware>();
+app.UseCors();
 app.UseRateLimiter();
 
 app.MapHealthChecks("/health");

@@ -1,7 +1,7 @@
 namespace Payments.Application.DTOs;
 
 // ── Request DTOs ──
-public record AuthorisePaymentRequest(Guid OrderId, decimal Amount, string Currency);
+public record AuthorisePaymentRequest(Guid OrderId, Guid CustomerId, decimal Amount, string Currency);
 public record RefundPaymentRequest(decimal Amount, string Reason);
 
 // ── Response DTOs ──

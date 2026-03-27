@@ -51,6 +51,33 @@ app.UseMiddleware<CorrelationIdMiddleware>();
 
 // ── Endpoints ──
 app.MapHealthChecks("/health");
+
+// ── Database Startup ──
+using (var scope = app.Services.CreateScope())
+{
+    var context = scope.ServiceProvider.GetRequiredService<Payments.Infrastructure.Persistence.PaymentsDbContext>();
+    context.Database.EnsureCreated();
+    
+    // ── Self-healing: Ensure CustomerId column exists (EnsureCreated doesn't update schema) ──
+    try
+    {
+        Console.WriteLine("[Schema Check] Verifying pay.Payments schema...");
+        context.Database.ExecuteSqlRaw(@"
+            IF NOT EXISTS (SELECT * FROM INFORMATION_SCHEMA.COLUMNS 
+                          WHERE TABLE_SCHEMA = 'pay' AND TABLE_NAME = 'Payments' 
+                          AND COLUMN_NAME = 'CustomerId')
+            BEGIN
+                PRINT 'Adding CustomerId column to pay.Payments...';
+                ALTER TABLE [pay].[Payments] ADD [CustomerId] UNIQUEIDENTIFIER NULL;
+            END");
+        Console.WriteLine("[Schema Check] Column check completed successfully.");
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine($"[Schema Check] Could not add CustomerId to pay.Payments: {ex.Message}");
+    }
+}
+
 app.MapControllers();
 
 app.Run();

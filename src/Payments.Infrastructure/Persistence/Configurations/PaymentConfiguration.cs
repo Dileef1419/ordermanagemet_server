@@ -16,6 +16,9 @@ public class PaymentConfiguration : IEntityTypeConfiguration<Payment>
         builder.Property(p => p.Status).HasConversion<string>().HasMaxLength(30);
         builder.HasIndex(p => p.IdempotencyKey).IsUnique();
         builder.HasIndex(p => p.OrderId);
+        builder.HasIndex(p => p.CustomerId);
+
+        builder.Property(p => p.CustomerId).IsRequired();
 
         builder.HasMany(p => p.Attempts)
             .WithOne()

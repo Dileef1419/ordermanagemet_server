@@ -1,8 +1,7 @@
-using Payments.Application;
-using Payments.Infrastructure;
 using SharedKernel.Filters;
 using SharedKernel.Middleware;
-using Orders.Infrastructure; // <-- new Orders.Infrastructure namespace
+using Orders.Infrastructure;
+using Orders.Application;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -25,12 +24,9 @@ builder.Services.AddSwaggerGen(c =>
 });
 
 // ── Application Layer (validators) ──
-builder.Services.AddPaymentsApplication(); // keep Payments app layer if needed
+builder.Services.AddOrdersApplication();
 
 // ── Infrastructure Layer ──
-// Payments Infrastructure
-builder.Services.AddPaymentsInfrastructure(builder.Configuration);
-
 // Orders Infrastructure
 builder.Services.AddOrdersInfrastructure(builder.Configuration);
 
@@ -54,6 +50,23 @@ app.UseMiddleware<CorrelationIdMiddleware>();
 
 // ── Endpoints ──
 app.MapHealthChecks("/health");
+// ── Database Startup ──
+using (var scope = app.Services.CreateScope())
+{
+    var context = scope.ServiceProvider.GetRequiredService<Orders.Infrastructure.Persistence.OrdersDbContext>();
+    context.Database.EnsureCreated();
+    if (!context.Orders.Any())
+    {
+        var dummyCustomerId = Guid.NewGuid();
+        var order = Orders.Domain.Aggregates.Order.Place(dummyCustomerId, "Initial Test Customer", new List<Orders.Domain.Aggregates.OrderLineInput>
+        {
+            new Orders.Domain.Aggregates.OrderLineInput("GMS-001", 1, 2500)
+        });
+        context.Orders.Add(order);
+        context.SaveChanges();
+    }
+}
+
 app.MapControllers();
 
 app.Run();

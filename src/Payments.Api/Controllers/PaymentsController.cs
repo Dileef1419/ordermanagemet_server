@@ -5,6 +5,7 @@ using Payments.Application.Commands.CapturePayment;
 using Payments.Application.Commands.RefundPayment;
 using Payments.Application.DTOs;
 using Payments.Application.Queries.GetPaymentByOrder;
+using Payments.Application.Queries.GetPaymentsByCustomer;
 using Payments.Application.Queries.GetRevenue;
 
 namespace Payments.Api.Controllers;
@@ -33,7 +34,7 @@ public class PaymentsController : ControllerBase
         if (idempotencyKey == Guid.Empty)
             return BadRequest("Idempotency-Key header required.");
 
-        var command = new AuthorisePaymentCommand(idempotencyKey, request.OrderId, request.Amount, request.Currency);
+        var command = new AuthorisePaymentCommand(idempotencyKey, request.OrderId, request.CustomerId, request.Amount, request.Currency);
 
         var validation = await validator.ValidateAsync(command, ct);
         if (!validation.IsValid)
@@ -95,6 +96,34 @@ public class PaymentsController : ControllerBase
     {
         var result = await handler.Handle(new GetPaymentByOrderQuery(orderId), ct);
         return result is not null ? Ok(result) : NotFound();
+    }
+
+    /// <summary>Get payments by customer ID.</summary>
+    [HttpGet("by-customer/{customerId:guid}")]
+    [ProducesResponseType(typeof(IReadOnlyList<PaymentSummaryResponse>), StatusCodes.Status200OK)]
+    public async Task<IActionResult> GetByCustomer(
+        Guid customerId,
+        [FromServices] IGetPaymentsByCustomerQueryHandler handler,
+        CancellationToken ct)
+    {
+        var result = await handler.Handle(new GetPaymentsByCustomerQuery(customerId), ct);
+        return Ok(result);
+    }
+
+    /// <summary>Get all payments (Admin only).</summary>
+    [HttpGet]
+    [ProducesResponseType(typeof(IReadOnlyList<PaymentSummaryResponse>), StatusCodes.Status200OK)]
+    public async Task<IActionResult> GetPayments(
+        [FromQuery] int page = 1,
+        [FromQuery] int pageSize = 20,
+        [FromServices] IGetPaymentsByCustomerQueryHandler handler = null!,
+        CancellationToken ct = default)
+    {
+        page = page < 1 ? 1 : page;
+        pageSize = Math.Clamp(pageSize, 1, 100);
+        var query = new GetPaymentsByCustomerQuery(null, page, pageSize);
+        var result = await handler.Handle(query, ct);
+        return Ok(result);
     }
 
     /// <summary>Get daily revenue report.</summary>

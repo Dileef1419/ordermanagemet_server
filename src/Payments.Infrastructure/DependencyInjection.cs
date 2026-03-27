@@ -8,6 +8,7 @@ using Payments.Application.Commands.AuthorisePayment;
 using Payments.Application.Commands.CapturePayment;
 using Payments.Application.Commands.RefundPayment;
 using Payments.Application.Queries.GetPaymentByOrder;
+using Payments.Application.Queries.GetPaymentsByCustomer;
 using Payments.Application.Queries.GetRevenue;
 using Payments.Domain.Repositories;
 using Payments.Infrastructure.CommandHandlers;
@@ -45,6 +46,7 @@ public static class DependencyInjection
 
         // ── Query Handlers ──
         services.AddScoped<IGetPaymentByOrderQueryHandler, GetPaymentByOrderQueryHandler>();
+        services.AddScoped<IGetPaymentsByCustomerQueryHandler, GetPaymentsByCustomerQueryHandler>();
         services.AddScoped<IGetRevenueQueryHandler, GetRevenueQueryHandler>();
 
         return services;

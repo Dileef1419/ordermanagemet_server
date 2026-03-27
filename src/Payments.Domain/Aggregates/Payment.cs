@@ -8,6 +8,7 @@ public sealed class Payment : AggregateRoot
 {
     public Guid Id { get; private set; }
     public Guid OrderId { get; private set; }
+    public Guid CustomerId { get; private set; }
     public Guid IdempotencyKey { get; private set; }
     public decimal Amount { get; private set; }
     public string Currency { get; private set; } = "AUD";
@@ -21,12 +22,13 @@ public sealed class Payment : AggregateRoot
 
     private Payment() { }
 
-    public static Payment Create(Guid orderId, decimal amount, string currency, Guid idempotencyKey)
+    public static Payment Create(Guid orderId, Guid customerId, decimal amount, string currency, Guid idempotencyKey)
     {
         return new Payment
         {
             Id = Guid.NewGuid(),
             OrderId = orderId,
+            CustomerId = customerId,
             IdempotencyKey = idempotencyKey,
             Amount = amount,
             Currency = currency,

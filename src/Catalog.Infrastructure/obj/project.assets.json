@@ -3658,31 +3658,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\dilshaik\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\dilee\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\dilshaik\\Downloads\\Final\\OrderPlatformArchitecture\\src\\Catalog.Infrastructure\\Catalog.Infrastructure.csproj",
+      "projectUniqueName": "C:\\Users\\dilee\\OneDrive\\Desktop\\OMS\\ordermanagemet_server\\src\\Catalog.Infrastructure\\Catalog.Infrastructure.csproj",
       "projectName": "Catalog.Infrastructure",
-      "projectPath": "C:\\Users\\dilshaik\\Downloads\\Final\\OrderPlatformArchitecture\\src\\Catalog.Infrastructure\\Catalog.Infrastructure.csproj",
-      "packagesPath": "C:\\Users\\dilshaik\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\dilshaik\\Downloads\\Final\\OrderPlatformArchitecture\\src\\Catalog.Infrastructure\\obj\\",
+      "projectPath": "C:\\Users\\dilee\\OneDrive\\Desktop\\OMS\\ordermanagemet_server\\src\\Catalog.Infrastructure\\Catalog.Infrastructure.csproj",
+      "packagesPath": "C:\\Users\\dilee\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\dilee\\OneDrive\\Desktop\\OMS\\ordermanagemet_server\\src\\Catalog.Infrastructure\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\dilshaik\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Users\\dilee\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net10.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
