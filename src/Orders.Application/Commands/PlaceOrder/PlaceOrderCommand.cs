@@ -10,6 +10,7 @@ public record PlaceOrderCommand(
     Guid IdempotencyKey,
     Guid CustomerId,
     string CustomerName,
+    Orders.Domain.Aggregates.Address ShippingAddress,
     IReadOnlyList<OrderLineItemCommand> Lines);
 
 public record OrderLineItemCommand(string Sku, int Quantity, decimal UnitPrice);

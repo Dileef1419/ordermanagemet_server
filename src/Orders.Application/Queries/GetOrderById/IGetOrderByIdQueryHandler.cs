@@ -3,4 +3,4 @@ using SharedKernel;
 
 namespace Orders.Application.Queries.GetOrderById;
 
-public interface IGetOrderByIdQueryHandler : IQueryHandler<GetOrderByIdQuery, OrderSummaryResponse?> { }
+public interface IGetOrderByIdQueryHandler : IQueryHandler<GetOrderByIdQuery, DetailedOrderResponse?> { }

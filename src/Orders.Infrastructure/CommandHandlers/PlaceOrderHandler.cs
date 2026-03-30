@@ -30,7 +30,7 @@ public class PlaceOrderHandler : IPlaceOrderCommandHandler
             .ToList();
 
         // 3. Domain logic
-        var order = Order.Place(cmd.CustomerId, cmd.CustomerName, lineInputs);
+        var order = Order.Place(cmd.CustomerId, cmd.CustomerName, cmd.ShippingAddress, lineInputs);
         await _db.Orders.AddAsync(order, ct);
 
         // 4. Write domain events to Outbox (same transaction)

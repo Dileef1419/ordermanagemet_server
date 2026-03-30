@@ -26,6 +26,9 @@ namespace Orders.Infrastructure
             services.AddScoped<Orders.Application.Commands.CancelOrder.ICancelOrderCommandHandler, CommandHandlers.CancelOrderHandler>();
             services.AddScoped<Orders.Application.Commands.ConfirmOrder.IConfirmOrderCommandHandler, CommandHandlers.ConfirmOrderHandler>();
             services.AddScoped<Orders.Application.Commands.MarkOrderFailed.IMarkOrderFailedCommandHandler, CommandHandlers.MarkOrderFailedHandler>();
+            services.AddScoped<Orders.Application.Commands.ShipOrder.IShipOrderCommandHandler, CommandHandlers.ShipOrderHandler>();
+            services.AddScoped<Orders.Application.Commands.DeliverOrder.IDeliverOrderCommandHandler, CommandHandlers.DeliverOrderHandler>();
+            services.AddScoped<Orders.Application.Commands.ReturnOrder.IReturnOrderCommandHandler, CommandHandlers.ReturnOrderHandler>();
 
             // 4. Query Handlers
             services.AddScoped<Orders.Application.Queries.GetOrderById.IGetOrderByIdQueryHandler, QueryHandlers.GetOrderByIdQueryHandler>();

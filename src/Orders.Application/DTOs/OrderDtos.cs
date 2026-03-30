@@ -4,6 +4,7 @@ namespace Orders.Application.DTOs;
 public record PlaceOrderRequest(
     Guid CustomerId,
     string CustomerName,
+    AddressDto ShippingAddress,
     List<OrderLineRequest> Lines);
 
 public record OrderLineRequest(
@@ -26,6 +27,24 @@ public record OrderSummaryResponse(
     int ItemCount,
     DateTimeOffset PlacedAt,
     DateTimeOffset LastUpdatedAt);
+
+public record DetailedOrderResponse(
+    Guid OrderId,
+    string CustomerName,
+    Guid CustomerId,
+    string Status,
+    decimal TotalAmount,
+    string Currency,
+    DateTimeOffset PlacedAt,
+    AddressDto ShippingAddress,
+    List<OrderDetailLineResponse> Lines);
+
+public record OrderDetailLineResponse(
+    string Sku,
+    int Quantity,
+    decimal UnitPrice);
+
+public record AddressDto(string FullName, string AddressLine1, string City, string PostalCode, string Country);
 
 public record OrderDashboardResponse(
     int Placed,

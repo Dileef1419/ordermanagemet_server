@@ -16,6 +16,15 @@ public class OrderConfiguration : IEntityTypeConfiguration<Order>
         builder.Property(o => o.TotalAmount).HasPrecision(18, 2);
         builder.Property(o => o.CustomerName).HasMaxLength(200);
 
+        builder.OwnsOne(o => o.ShippingAddress, a =>
+        {
+            a.Property(addr => addr.FullName).HasMaxLength(200);
+            a.Property(addr => addr.AddressLine1).HasMaxLength(250);
+            a.Property(addr => addr.City).HasMaxLength(100);
+            a.Property(addr => addr.PostalCode).HasMaxLength(20);
+            a.Property(addr => addr.Country).HasMaxLength(100);
+        });
+
         builder.HasMany(o => o.Lines)
             .WithOne()
             .HasForeignKey(l => l.OrderId)

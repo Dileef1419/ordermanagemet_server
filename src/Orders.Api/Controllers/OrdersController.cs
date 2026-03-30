@@ -31,23 +31,41 @@ public class OrdersController : ControllerBase
         [FromServices] IValidator<PlaceOrderCommand> validator,
         CancellationToken ct)
     {
-        if (idempotencyKey == Guid.Empty)
-            return BadRequest("Idempotency-Key header is required (GUID).");
+        try
+        {
+            if (idempotencyKey == Guid.Empty)
+                return BadRequest("Idempotency-Key header is required (GUID).");
 
-        var command = new PlaceOrderCommand(
-            idempotencyKey,
-            request.CustomerId,
-            request.CustomerName,
-            request.Lines.Select(l => new OrderLineItemCommand(l.Sku, l.Quantity, l.UnitPrice)).ToList());
+            if (request.ShippingAddress is null)
+                return BadRequest(new ValidationProblemDetails(new Dictionary<string, string[]> { { "ShippingAddress", new[] { "Shipping Address is required." } } }));
 
-        var validation = await validator.ValidateAsync(command, ct);
-        if (!validation.IsValid)
-            return BadRequest(new ValidationProblemDetails(
-                validation.Errors.GroupBy(e => e.PropertyName)
-                    .ToDictionary(g => g.Key, g => g.Select(e => e.ErrorMessage).ToArray())));
+            var address = new Domain.Aggregates.Address(
+                request.ShippingAddress.FullName,
+                request.ShippingAddress.AddressLine1,
+                request.ShippingAddress.City,
+                request.ShippingAddress.PostalCode,
+                request.ShippingAddress.Country);
 
-        var result = await handler.Handle(command, ct);
-        return CreatedAtAction(nameof(GetOrderById), new { orderId = result.OrderId }, result);
+            var command = new PlaceOrderCommand(
+                idempotencyKey,
+                request.CustomerId,
+                request.CustomerName,
+                address,
+                request.Lines.Select(l => new OrderLineItemCommand(l.Sku, l.Quantity, l.UnitPrice)).ToList());
+
+            var validation = await validator.ValidateAsync(command, ct);
+            if (!validation.IsValid)
+                return BadRequest(new ValidationProblemDetails(
+                    validation.Errors.GroupBy(e => e.PropertyName)
+                        .ToDictionary(g => g.Key, g => g.Select(e => e.ErrorMessage).ToArray())));
+
+            var result = await handler.Handle(command, ct);
+            return CreatedAtAction(nameof(GetOrderById), new { orderId = result.OrderId }, result);
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, new { error = ex.Message, innerError = ex.InnerException?.Message });
+        }
     }
 
     /// <summary>Cancel an existing order.</summary>
@@ -61,9 +79,20 @@ public class OrdersController : ControllerBase
         [FromServices] ICancelOrderCommandHandler handler,
         CancellationToken ct)
     {
-        var command = new CancelOrderCommand(orderId, request.Reason);
-        var result = await handler.Handle(command, ct);
-        return Ok(result);
+        try
+        {
+            var command = new CancelOrderCommand(orderId, request.Reason);
+            var result = await handler.Handle(command, ct);
+            return Ok(result);
+        }
+        catch (Orders.Domain.Exceptions.OrderNotFoundException ex)
+        {
+            return NotFound(new { message = ex.Message });
+        }
+        catch (Orders.Domain.Exceptions.InvalidOrderStateException ex)
+        {
+            return Conflict(new { message = ex.Message });
+        }
     }
 
     /// <summary>Confirm an order after payment.</summary>
@@ -95,7 +124,7 @@ public class OrdersController : ControllerBase
 
     /// <summary>Get order by ID (Dapper read model).</summary>
     [HttpGet("{orderId:guid}")]
-    [ProducesResponseType(typeof(OrderSummaryResponse), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(DetailedOrderResponse), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<IActionResult> GetOrderById(
         Guid orderId,
@@ -143,26 +172,52 @@ public class OrdersController : ControllerBase
     }
 
     /// <summary>Update order status (Admin only).</summary>
-    [HttpPatch("{orderId:guid}/status")]
+    [HttpPut("{orderId:guid}/status")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<IActionResult> UpdateStatus(
         Guid orderId,
         [FromBody] UpdateOrderStatusRequest request,
         [FromServices] ICancelOrderCommandHandler cancelHandler,
+        [FromServices] Orders.Application.Commands.ShipOrder.IShipOrderCommandHandler shipHandler,
+        [FromServices] Orders.Application.Commands.DeliverOrder.IDeliverOrderCommandHandler deliverHandler,
+        [FromServices] Orders.Application.Commands.ReturnOrder.IReturnOrderCommandHandler returnHandler,
         CancellationToken ct)
     {
-        // For now, if status is Cancelled, reuse the cancel handler. 
-        // For Shipped/Delivered, we'll assume a direct DB update or add a new command.
-        // To keep it simple for this task, I'll log and return OK if not Cancelled.
-        if (request.Status == "Cancelled")
+        try
         {
-            await cancelHandler.Handle(new CancelOrderCommand(orderId, "Admin override"), ct);
+            switch (request.Status)
+            {
+                case "Cancelled":
+                    await cancelHandler.Handle(new CancelOrderCommand(orderId, "Admin override"), ct);
+                    break;
+                case "Shipped":
+                    await shipHandler.Handle(new Orders.Application.Commands.ShipOrder.ShipOrderCommand(orderId), ct);
+                    break;
+                case "Delivered":
+                    await deliverHandler.Handle(new Orders.Application.Commands.DeliverOrder.DeliverOrderCommand(orderId), ct);
+                    break;
+                case "Returned":
+                    await returnHandler.Handle(new Orders.Application.Commands.ReturnOrder.ReturnOrderCommand(orderId, "Customer return"), ct);
+                    break;
+                default:
+                    return BadRequest(new { message = $"Status transition to '{request.Status}' is not supported." });
+            }
+            
             return NoContent();
         }
-        
-        // Mocking other status updates for now as there's no dedicated command
-        return NoContent();
+        catch (Orders.Domain.Exceptions.OrderNotFoundException ex)
+        {
+            return NotFound(new { message = ex.Message });
+        }
+        catch (Orders.Domain.Exceptions.InvalidOrderStateException ex)
+        {
+            return Conflict(new { message = ex.Message });
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, new { message = "An internal error occurred", details = ex.Message });
+        }
     }
 
     /// <summary>Get order dashboard (aggregate counts by status).</summary>

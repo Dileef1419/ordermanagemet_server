@@ -16,13 +16,15 @@ public sealed class Order : AggregateRoot
     public DateTimeOffset PlacedAt { get; private set; }
     public DateTimeOffset LastUpdatedAt { get; private set; }
     public byte[] RowVersion { get; private set; } = null!;
+    
+    public Address? ShippingAddress { get; private set; }
 
     private readonly List<OrderLine> _lines = new();
     public IReadOnlyCollection<OrderLine> Lines => _lines.AsReadOnly();
 
     private Order() { } // EF Core
 
-    public static Order Place(Guid customerId, string customerName, IReadOnlyList<OrderLineInput> lines)
+    public static Order Place(Guid customerId, string customerName, Address address, IReadOnlyList<OrderLineInput> lines)
     {
         if (lines.Count == 0)
             throw new ArgumentException("Order must have at least one line.");
@@ -32,6 +34,7 @@ public sealed class Order : AggregateRoot
             Id = Guid.NewGuid(),
             CustomerId = customerId,
             CustomerName = customerName,
+            ShippingAddress = address,
             Status = OrderStatus.Placed,
             Currency = "AUD",
             PlacedAt = DateTimeOffset.UtcNow,
@@ -78,6 +81,36 @@ public sealed class Order : AggregateRoot
         LastUpdatedAt = DateTimeOffset.UtcNow;
         RaiseDomainEvent(new OrderFailedEvent(Id, failureReason));
     }
+
+    public void Ship()
+    {
+        if (Status != OrderStatus.Confirmed)
+            throw new InvalidOrderStateException(Id, Status.ToString(), nameof(OrderStatus.Shipped));
+
+        Status = OrderStatus.Shipped;
+        LastUpdatedAt = DateTimeOffset.UtcNow;
+        RaiseDomainEvent(new OrderShippedEvent(Id));
+    }
+
+    public void Deliver()
+    {
+        if (Status != OrderStatus.Shipped)
+            throw new InvalidOrderStateException(Id, Status.ToString(), nameof(OrderStatus.Delivered));
+
+        Status = OrderStatus.Delivered;
+        LastUpdatedAt = DateTimeOffset.UtcNow;
+        RaiseDomainEvent(new OrderDeliveredEvent(Id));
+    }
+
+    public void Return(string reason)
+    {
+        if (Status != OrderStatus.Delivered)
+            throw new InvalidOrderStateException(Id, Status.ToString(), nameof(OrderStatus.Returned));
+
+        Status = OrderStatus.Returned;
+        LastUpdatedAt = DateTimeOffset.UtcNow;
+        RaiseDomainEvent(new OrderReturnedEvent(Id, reason));
+    }
 }
 
 public sealed class OrderLine
@@ -101,3 +134,5 @@ public sealed class OrderLine
 }
 
 public record OrderLineInput(string Sku, int Quantity, decimal UnitPrice);
+
+public record Address(string FullName, string AddressLine1, string City, string PostalCode, string Country);

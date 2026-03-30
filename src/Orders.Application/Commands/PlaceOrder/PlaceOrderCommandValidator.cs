@@ -16,6 +16,15 @@ public class PlaceOrderCommandValidator : AbstractValidator<PlaceOrderCommand>
             .NotEmpty().WithMessage("CustomerName is required.")
             .MaximumLength(200).WithMessage("CustomerName must not exceed 200 characters.");
 
+        RuleFor(x => x.ShippingAddress)
+            .NotNull().WithMessage("ShippingAddress is required.");
+
+        RuleFor(x => x.ShippingAddress.FullName)
+            .NotEmpty().When(x => x.ShippingAddress != null);
+
+        RuleFor(x => x.ShippingAddress.AddressLine1)
+            .NotEmpty().When(x => x.ShippingAddress != null);
+
         RuleFor(x => x.Lines)
             .NotEmpty().WithMessage("Order must contain at least one line.");
 

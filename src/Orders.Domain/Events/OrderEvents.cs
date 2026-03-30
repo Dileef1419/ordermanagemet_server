@@ -14,3 +14,9 @@ public sealed record OrderConfirmedEvent(Guid OrderId) : DomainEvent;
 public sealed record OrderCancelledEvent(Guid OrderId, string Reason) : DomainEvent;
 
 public sealed record OrderFailedEvent(Guid OrderId, string FailureReason) : DomainEvent;
+
+public sealed record OrderShippedEvent(Guid OrderId) : DomainEvent;
+
+public sealed record OrderDeliveredEvent(Guid OrderId) : DomainEvent;
+
+public sealed record OrderReturnedEvent(Guid OrderId, string Reason) : DomainEvent;
